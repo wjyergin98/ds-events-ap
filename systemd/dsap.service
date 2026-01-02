@@ -1,0 +1,13 @@
+[Unit]
+Description=DS Events Access Point (manual scripts wrapper)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/dsap-up
+ExecStop=/usr/local/sbin/dsap-down
+
+[Install]
+WantedBy=multi-user.target

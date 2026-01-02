@@ -1,0 +1,14 @@
+interface=__AP_IF__
+driver=nl80211
+
+ssid=DS-Events
+hw_mode=b
+channel=6
+
+ieee80211n=0
+
+preamble=1
+auth_algs=1
+wpa=0
+ignore_broadcast_ssid=0
+

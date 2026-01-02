@@ -1,0 +1,27 @@
+# DS Events AP (hostapd)
+# Rendered by dsap-up at runtime.
+
+interface=__AP_IF__
+driver=nl80211
+
+ssid=__SSID__
+hw_mode=b
+channel=__CHANNEL__
+
+# Keep the radio in legacy mode for original Nintendo DS compatibility.
+ieee80211n=0
+
+# Long preamble improves compatibility with some legacy clients.
+# If your hostapd build rejects this key, remove it.
+preamble=1
+
+# Open network (Nintendo DS WFC for Gen IV expects open or WEP)
+auth_algs=1
+wpa=0
+ignore_broadcast_ssid=0
+
+# Optional logging
+logger_syslog=-1
+logger_syslog_level=2
+logger_stdout=-1
+logger_stdout_level=2

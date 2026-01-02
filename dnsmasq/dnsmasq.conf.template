@@ -1,0 +1,16 @@
+# Only listen on the DS access point interface
+#interface=__AP_IF__
+listen-address=192.168.4.1
+bind-interfaces
+
+# Disable DNS functionality completely
+port=0
+
+# DHCP range for DS clients
+dhcp-range=192.168.4.10,192.168.4.50,255.255.255.0,12h
+
+# Gateway
+dhcp-option=3,192.168.4.1
+
+# DNS (will be overridden manually on the DS)
+dhcp-option=6,__EVENT_DNS__

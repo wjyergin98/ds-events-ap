@@ -1,0 +1,19 @@
+# DS Events AP (dnsmasq)
+# Drop-in file rendered by dsap-up at runtime.
+
+# Bind only to the DS Events AP interface and address.
+interface=__AP_IF__
+bind-interfaces
+listen-address=__AP_GW__
+
+# DHCP range for DS clients
+dhcp-range=__DHCP_START__,__DHCP_END__,__NETMASK__,12h
+
+# Gateway option
+dhcp-option=3,__AP_GW__
+
+# Advertise the event DNS server to clients.
+dhcp-option=6,__EVENT_DNS__
+
+# Option B: Disable local DNS server; dnsmasq will serve DHCP only.
+port=0
