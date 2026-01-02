@@ -26,7 +26,7 @@ It was built to support workflows like Gen IV Pokémon event/Mystery Gift retrie
 ### 1) Install
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/wjyergin98/ds-events-ap.git
 cd ds-events-ap
 sudo ./install.sh
 ```
