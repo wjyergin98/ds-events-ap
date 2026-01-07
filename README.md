@@ -4,14 +4,16 @@ This repository packages a reproducible "piggyback" Wi-Fi access point for **Nin
 
 - **Ethernet uplink** to your home network/internet
 - A **USB Wi-Fi adapter that supports AP mode** (e.g., Netgear A6150)
-- `hostapd` (to broadcast an open 2.4GHz legacy SSID)
+- `hostapd` (to broadcast an open 2.4 GHz legacy SSID)
 - `dnsmasq` (DHCP only; optionally advertises an event DNS)
 
-It was built to support workflows like Gen IV Pokémon event/Mystery Gift retrieval where:
+It was built to support workflows like Gen IV Pokémon event / Mystery Gift retrieval where:
 
 - Your primary router uses WPA2/WPA3
 - Your phone hotspot cannot be set to "open"
 - The Nintendo DS expects open/WEP and legacy 802.11b/g behavior
+
+---
 
 ## What this tool does
 
@@ -20,6 +22,26 @@ It was built to support workflows like Gen IV Pokémon event/Mystery Gift retrie
 - Provides DHCP leases to the DS (`192.168.4.10`–`192.168.4.50`)
 - Enables IPv4 forwarding + NAT so clients can reach the internet
 - Advertises a configurable **event DNS server** to clients via DHCP option 6
+
+---
+
+## Supported platforms
+
+This project has been validated on:
+
+- **x86_64 Linux** (Ubuntu 20.04+)
+- **Raspberry Pi 5 (ARM64)** running Raspberry Pi OS / Debian with **kernel ≥ 6.12**
+
+### Raspberry Pi notes (important)
+
+- Modern kernels (≥ 6.12) include an **in-kernel, standards-compliant driver** for the Netgear A6150 (`rtw_8822bu`).
+- **No external DKMS / out-of-tree Wi-Fi driver is required** on these systems.
+- The adapter must support **AP mode** (`iw list` → `Supported interface modes: * AP`).
+
+On Raspberry Pi OS, `hostapd.service` is **masked by default**.  
+The installer automatically **unmasks (but does not enable)** it so `dsap-up` can manage the AP lifecycle.
+
+---
 
 ## Quick start
 
