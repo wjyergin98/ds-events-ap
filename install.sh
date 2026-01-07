@@ -87,6 +87,15 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
 apt-get install -y hostapd dnsmasq iptables
 
+# Some distros (notably Raspberry Pi OS) ship hostapd masked by default.
+# Unmask it so dsap-up can start/stop hostapd explicitly. Do not enable it at boot.
+if systemctl is-enabled hostapd 2>/dev/null | grep -q '^masked$'; then
+  echo "hostapd.service is masked; unmasking so dsap-up can manage it."
+  systemctl unmask hostapd
+fi
+# Ensure it won't auto-start unless the user explicitly enables it
+systemctl disable hostapd 2>/dev/null || true
+
 # Install directories
 install -d -m 0755 /etc/ds-events-ap
 install -d -m 0755 /usr/local/share/ds-events-ap
